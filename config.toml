@@ -53,7 +53,7 @@ contact_form_ajax = true
 
 [params.footer]
 title = "About Scentuaire"
-text = "© 2023, Scentuaire Powered by Shopify"
+text = "© 2023, Scentuaire"
 url = "https://www.shopify.com/?utm_campaign=poweredby&utm_medium=shopify&utm_source=onlinestore"
 description = "Everyone has a space they like to call their own, why not make it smell fabulous. With our diffusers and scent technology you're sure to have a space you can be proud of."
 
