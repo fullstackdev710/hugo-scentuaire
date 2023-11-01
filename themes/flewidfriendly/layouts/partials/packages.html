@@ -1,0 +1,59 @@
+{{ if isset .Site.Params "packages" }}
+{{ if .Site.Params.packages.enable }}
+{{ if isset .Site.Data "packages" }}
+{{ if gt (len .Site.Data.packages) 0 }}
+<section class="bar background-white">
+    <div class="container">
+        <div class="row">
+            <div class="heading text-center">
+                <h2>{{ .Site.Params.packages.title }}</h2>
+                <p>{{ .Site.Params.packages.subtitle }}</p>
+            </div>
+        </div>
+
+        {{ $elements := default 3 .Site.Params.packages.cols }}
+        {{ $packages := sort .Site.Data.packages "weight" }}
+
+        {{ $total_rows := div (len $packages) $elements }}
+
+        {{ if gt (mod (len $packages) $elements) 0 }}
+        {{ $total_rows = add $total_rows 1 }}
+        {{ end }}
+
+        {{ range $i, $sequence := seq $total_rows }}
+        <div class="row row-{{ $i }} row-{{ if eq (mod $i 2) 0 }}odd{{ else }}even{{ end }}">
+            {{ range $j, $sequence2 := (seq $elements) }}
+
+            {{ $feature_index := add (mul $i $elements) $j }}
+            {{ if lt $feature_index (len $packages) }}
+            {{ $element := index $packages $feature_index }}
+
+            <div class="col-md-4">
+                <div class="box-simple" {{ with $element.backgroundImg }}
+                    style="background-image: url( {{ $element.backgroundImg }});" {{ end }}>
+                    <div class="bg-overlay" style="background-color: rgba(0, 0, 0, 0.5)"></div>
+                    {{ with $element.url }}
+                    <a href="{{ $element.url }}" aria-label="{{ $element.name }}">
+                        {{ end }}
+                        <div class="icon">
+                            <i class="{{ $element.icon }}"></i>
+                        </div>
+                        {{ with $element.url }}
+                    </a>
+                    {{ end }}
+                    <h3>{{ $element.name | markdownify }}</h3>
+                    <p>{{ $element.description | markdownify }}</p>
+                    <a href="{{ $element.url }}" aria-label="{{ $element.name }}">Read {{ $element.name }}</a>
+                </div>
+            </div>
+
+            {{ end }}
+            {{ end }}
+        </div>
+        {{ end }}
+    </div>
+</section>
+{{ end }}
+{{ end }}
+{{ end }}
+{{ end }}

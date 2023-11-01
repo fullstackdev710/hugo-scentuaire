@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Params.lang }}">
+{{- partial "head.html" . -}} {{ if or (.Params.math) (.Site.Params.math) }}
+{{- partial "math.html" . -}} {{ end }}
+
+<body id="backtop">
+  {{- partial "header.html" . -}}
+  <div class="main">
+    <div class="home-banner">
+      <div class="">{{- partial "home-banner.html" . -}}</div>
+    </div>
+
+    <section class="home-content py-0">
+      <div class="container" id="home-content">
+        {{- partial "home-content.html" . -}}
+      </div>
+    </section>
+
+    <section class="featured-products py-0">
+      <div class="container" id="featured-products">
+        {{- partial "featured-products.html" . -}}
+      </div>
+    </section>
+  </div>
+  {{- partial "footer.html" . -}} {{ partial "scripts.html" . }}
+</body>
+
+</html>

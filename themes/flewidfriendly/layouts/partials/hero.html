@@ -1,0 +1,32 @@
+<section class="m-0">
+   <div class="home-hero">
+
+      <!-- Background image -->
+      <div class="text-center bg-image" style="
+            background-image: url('https://mdbcdn.b-cdn.net/img/new/slides/041.webp');
+            height: 500px;
+            margin-top: 0;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            ">
+
+         <div class="mask" style="background-color: rgba(0, 0, 0, 0.6); height: 500px;">
+
+            <div class="herotitlesection">
+               <h1 class="mb-3">{{ .Site.Params.heros.title }}</h1>
+               <h4 class="mb-3">{{ .Site.Params.heros.subtitle }}</h4>
+               <div class="btnsectHero">
+                  {{ range .Site.Menus.herobar.ByWeight }}
+                  <a class="btn-default" href="{{ .URL | safeURL }}">{{ .Pre }}</a>
+                  {{ end }}
+               </div>
+            </div>
+
+         </div>
+      </div>
+      <!-- Background image -->
+
+
+   </div>
+</section>

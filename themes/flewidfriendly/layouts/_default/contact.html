@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Params.lang }}">
+{{- partial "head.html" . -}}
+{{ if or (.Params.math) (.Site.Params.math) }}
+{{- partial "math.html" . -}}
+{{ end }}
+
+<head>
+   {{ partial "header.html" . }}
+</head>
+
+<body id="backtop">
+   <div class="main">
+      {{ partial "breadcrumbs.html" . }}
+      <div class="container pb-5">
+         <div class="row">
+            {{ if isset .Site.Params "formspree_action" }}
+
+            <div class="heading">
+               <h3>{{ i18n "contactForm" }}</h3>
+            </div>
+
+            <div id="contact-message"></div>
+
+            {{- partial "contact.html" . -}}
+
+            {{ end }}
+         </div>
+      </div>
+   </div>
+
+   {{- partial "footer.html" . -}}
+   </div>
+</body>
+
+</html>

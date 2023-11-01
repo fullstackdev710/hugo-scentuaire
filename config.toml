@@ -1,0 +1,184 @@
+baseURL = ""
+title = "Scentuaire"
+theme = "flewidfriendly"
+disableKinds = ["taxonomy", "term"]
+enableEmoji = true
+math = false          # 
+googleAnalytics = ""  # add your tracking id
+# Site language. Available translations in the theme's `/i18n` directory.
+defaultContentLanguage = "en"
+
+[params.enable]
+ # Google Maps widget: If `googleMapsApiKey` is not set, no key will be passed to Google (which likely results in a broken map widget).
+    enableGoogleMaps = true
+    googleMapsApiKey = "AIzaSyAv7Sza8NSp9_l_g8G2vlo0H4ydEPn_2jY"
+
+    latitude = "-12.043333"
+    longitude = "-77.028333"
+
+# - register your account to https://formspree.io/register
+    # - login and create new form
+    # - set your form's endpoint url under 'formspree_action' below
+    # - upload the generated site to your server
+    # - test a dummy email yourself
+    # - you're done. Happy mailing!
+    #
+    # Enable the contact form by entering your Formspree.io endpoint url
+formspree_action = "https://formspree.io/sample/of/endpoint"
+contact_form_ajax = true
+
+    enableRecaptchaInContactForm = true
+    googleRecaptchaKey = "site_key_for_google_recaptcha"
+
+# - form actin key set here / Your form's endpoint is:
+    formspreekey = "xvonddbb"
+
+# number of words of summarized post content (default 70)
+summaryLength = 70
+
+# Define the number of posts per page
+paginate = 10
+
+[params]
+mainSections = ['products']
+lang = "en"
+author = ""
+description = "Scent Diffusers & Aroma Oils"
+seoTitle = "Scent Diffusers & Aroma Oils"
+favicon = "/img/favico.png"  # path to a .ico to use as favicon
+logo = "/img/logo-original.png"  # url or path to a logo to put in the header
+logo_black = "/img/logo-original.png"  # url or path to a logo to put in the header
+formspree_action = "https://formspree.io/sample/of/endpoint"
+contact_form_ajax = true
+
+[params.footer]
+title = "About Scentuaire"
+text = "© 2023, Scentuaire Powered by Shopify"
+url = "https://www.shopify.com/?utm_campaign=poweredby&utm_medium=shopify&utm_source=onlinestore"
+description = "Everyone has a space they like to call their own, why not make it smell fabulous. With our diffusers and scent technology you're sure to have a space you can be proud of."
+
+
+[params.footerContactus]
+title = "Contact"
+address1 = "100-2435 Holly Lane"
+address2 = "Ottawa, Ontario, K1V7P2"
+tel = "Tel: 613 518 7379"
+telNumber = "6135187379"
+url = "mailto:contact@flewidfriendly.com"
+text = "contact@flewidfriendly.com"
+
+[params.recent_posts]
+enable = true
+title = "Our Blog"
+subtitle = "Find Our Latest Post"
+hide_summary = false
+
+# Format dates with Go's time formatting
+date_format = "Mon, Jan 2, 2006"
+
+[permalinks]
+"/" = "/:filename"
+
+
+# Main menu
+[[menu.main]]
+identifier = "menu.home"
+name       = "Home"
+url        = "/"
+weight     = 1
+
+[[menu.main]]
+identifier = "menu.aroma-oils"
+name       = "Aroma Oils"
+url        = "/aroma-oils"
+weight     = 2
+
+[[menu.main]]
+name       = "Product Help"
+identifier = "menu.product-help"
+url        = "/product-help"
+weight     = 3
+
+[[menu.main]]
+name       = "Contact"
+identifier = "menu.contact"
+url        = "/contact"
+weight     = 4
+
+
+
+[[menu.footer]]
+identifier = "menu.privacy-policy"
+name       = "Privacy Policy"
+url        = "/privacy-policy"
+weight     = 1
+
+[[menu.footer]]
+identifier = "menu.terms-and-conditions"
+name       = "Terms & Conditions"
+url        = "/terms-and-conditions"
+weight     = 2
+
+[[menu.footer]]
+identifier = "menu.product-help"
+name       = "Product Help"
+url        = "/product-help"
+weight     = 3
+
+[[menu.herobar]]
+weight = 1
+name = "Phone"
+url = "#"
+pre = "Get Started"
+
+[[menu.herobar]]
+weight = 3
+name = "Schedule a Demo"
+url = "#"
+pre = "Schedule a Demo"  
+
+[[menu.herobar]]
+weight = 4
+name = "Contact Us"
+url = "#contact"
+pre = "Contact Us"
+
+[params.packages]
+enable = true
+title = "Packages"
+subtitle = "Get out of the business of being in the business."
+cols = 3 # Default: 3, Available values 2,3,4,6
+
+[params.products]
+enable = true
+title = "Featured products"
+subtitle = ""
+cols = 4 # Default: 4, Available values 2,3,4,6
+
+[params.howtouse]
+enable = true
+title = "How to Use" 
+
+[params.contact]
+enable = true
+title = "Contact Us" 
+
+[params.trustedpartners]
+enable = true
+title = "Trusted Partners" 
+subtitle = "With our Company, you've got a friend in the tech business. We've built long-term relationships with trusted partners so you don't have to." 
+
+[taxonomies]
+category = "categories"
+tag = "tags"
+author = "authors"
+
+# Enable and disable widgets for the right sidebar
+[params.widgets]
+categories = true
+tags = true
+search = true
+
+
+[markup.goldmark.renderer]
+unsafe = true  # allow raw HTML in markdown files

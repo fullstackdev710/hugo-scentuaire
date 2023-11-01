@@ -1,0 +1,23 @@
+<div class="container" id="howtouse">
+   <div class="row">
+      <div class="col-12">
+         <div class="heading text-center">
+            <h2>{{ .Site.Params.howtouse.title }}</h2>
+         </div>
+
+         <div class="row align-items-center">
+            {{ range .Site.Data.howtouse }}
+
+            <div class="col-md-4">
+               <div class="howtouseit">
+                  <h2>{{ .title | safeHTML }}</h2>
+                  <p>{{ .description | safeHTML }}</p>
+               </div>
+            </div>
+
+            {{ end }}
+         </div>
+      </div>
+   </div>
+   <!-- /.row -->
+</div>

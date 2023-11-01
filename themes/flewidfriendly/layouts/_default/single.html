@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Params.lang }}">
+{{- partial "head.html" . -}}
+{{ if or (.Params.math) (.Site.Params.math) }}
+{{- partial "math.html" . -}}
+{{ end }}
+
+<head>
+  {{ partial "header.html" . }}
+  <style>
+    h2 {
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="all">
+    <div id="content">
+      <div class="container py-5">
+        <div class="row gx-3 gx-md-5">
+          <div class="col-12 col-md-7">
+            <div class="image">
+              <img src="{{ .Params.banner | relURL }}" class="img-responsive" alt="">
+            </div>
+          </div>
+          <div class="col-12 col-md-5">
+            <p class="title-info mt-3">Scentuaire Scents</p>
+            <h1>{{.Title}}</h1>
+            <div class="my-3">
+              {{ if isset .Params "authors" }}
+              <span>BY
+                {{ range .Param "authors" }}
+                <a href="#"> {{ . }}</a>
+                {{ end }}
+              </span>
+              {{ end }}
+
+              {{ if isset .Params "price" }}
+              <p class="product-price">${{ .Params.Price }} USD</p>
+              {{ end }}
+
+              <p>SIZES AVAILABLE</p>
+              <p>15ml / 125ml / 500ml</p>
+
+              <a href="#" class="btn btn-default">Buy it now</a>
+            </div>
+
+            <div>
+              {{ .Content }}
+            </div>
+            <!-- /#post-content -->
+            {{ if .Site.DisqusShortname }}
+            <div id="comments">
+              {{ template "_internal/disqus.html" . }}
+            </div>
+            {{ end }}
+          </div>
+          <!-- /.row -->
+        </div>
+
+        <section class="featured-products py-0">
+          <div class="container" id="featured-products">
+            {{- partial "featured-products.html" . -}}
+          </div>
+        </section>
+        <!-- /.container -->
+      </div>
+      <!-- /#content -->
+
+      {{ partial "footer.html" . }}
+
+    </div>
+    <!-- /#all -->
+
+    {{ partial "scripts.html" . }}
+
+</body>
+
+</html>

@@ -1,0 +1,77 @@
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  <title>
+    {{.Site.Params.seoTitle}} - {{with .Parent}}{{if not .IsHome}}{{.Title}}
+    -{{end}}{{end}} {{ .Title }}
+  </title>
+  <meta name="description" content="{{ .Site.Params.description }}" />
+  <meta name="author" content="{{ .Site.Params.author }}" />
+
+  <!-- Font -->
+  <link href="//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,500,700,800" rel="stylesheet"
+    type="text/css" media="all" />
+
+  <link href="/libs/bootstrap/5.3.0/css/bootstrap.min.css" media="all" rel="stylesheet" />
+  <script src="/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js" async defer></script>
+
+  <link rel="stylesheet" href="/libs/font-awesome/fontawesome-free-6.4.0-web/css/all.min.css" media="all" />
+
+  {{ $style := resources.Get "sass/custom.scss" | resources.ExecuteAsTemplate
+  "sass/custom.scss" . | toCSS | minify }}
+  <link rel="stylesheet" href="{{ $style.RelPermalink }}" />
+
+  {{ $style := resources.Get "css/main.css" | resources.PostCSS (dict "config"
+  "./postcss.config.js") | resources.Minify | resources.Fingerprint "sha512" }}
+  <link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}" />
+
+  {{- $js := resources.Get "js/indexfetch.js" -}} {{ $params := (dict
+  "search_config" site.Params.search_config "is_production" hugo.IsProduction )
+  }} {{ $sourceMap := cond hugo.IsProduction "" "inline" }} {{ $opts := dict
+  "sourceMap" $sourceMap "minify" hugo.IsProduction "target" "es2018" "params"
+  $params }} {{ $js = $js | js.Build $opts }}
+  <script src="{{ $js.RelPermalink }}" {{ if hugo.IsProduction }}integrity="{{ $js.Data.Integrity }}" {{ end }}
+    defer></script>
+
+  {{ with .Site.Params.favicon }}
+  <link rel="icon" type="image/ico" href="{{ . | absURL }}" />
+  {{ end }} {{ with .OutputFormats.Get "rss" -}} {{ printf `
+  <link rel="%s" type="%s" href="%s" title="%s" />
+  ` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }} {{ end -}} {{ if
+  not .Site.IsServer }}
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  {{ template "_internal/google_analytics.html" . }} {{ end }}
+  <script type="application/ld+json">
+    {
+      "@context": "http://www.schema.org",
+      "@type": "TravelAgency",
+      "name": "#1 Marine & Biodegradable Drinking Straws, Nunavut",
+      "url": "https://polaroutfittingnunavut.ca/",
+      "sameAs": ["https://facebook.com"],
+      "logo": "/img/logo-original.png",
+      "image": "/img/logo-original.png",
+      "description": "This is a description of the website",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "123 street ",
+        "addressLocality": "iqaluit",
+        "addressRegion": "nunavut",
+        "postalCode": "x0a 0h0",
+        "addressCountry": "canada"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "63.753716",
+        "longitude": "-68.518088"
+      },
+      "openingHours": "Mo, Tu, We, Th, Fr 09:00-17:00",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "1-555-555-5555",
+        "contactType": "General"
+      }
+    }
+  </script>
+</head>

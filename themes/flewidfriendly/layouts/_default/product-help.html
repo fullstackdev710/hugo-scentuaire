@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Params.lang }}">
+{{- partial "head.html" . -}}
+{{ if or (.Params.math) (.Site.Params.math) }}
+{{- partial "math.html" . -}}
+{{ end }}
+
+<head>
+   {{ partial "header.html" . }}
+</head>
+
+<body id="backtop">
+   <div class="main">
+      {{ partial "breadcrumbs.html" . }}
+
+      <div class="container">
+         <div class="row mb-5">
+            <div class="col-12">
+               <div class="rte">
+                  <h3>Product Manual</h3>
+                  <p>
+                     Please download and read the product manual below to ensure safe and easy operation of your
+                     Scentuaire BT-1000 Scent Diffuser.
+                  </p>
+                  <p>
+                     <strong>
+                        <a class="text-decoration-underline"
+                           href="https://cdn.shopify.com/s/files/1/0592/8101/4953/files/BT1000-Manual.pdf"
+                           target="_blank" title="BT-1000 Product Manual" rel="noopener noreferrer">
+                           DOWNLOAD BT-1000 PRODUCT MANUAL
+                        </a>
+                     </strong>
+                  </p>
+                  <h2>Bluetooth App</h2>
+                  <p>
+                     Please visit one of the links below for your mobile operating system of choice to download the
+                     Bluetooth App in order to control your BT-1000 diffuser from your couch!
+                  </p>
+                  <p>
+                     <img src="/img/slice1.webp" alt="Scenting BT-1000 App Logo" style="border: none !important;">
+                  </p>
+                  <p>
+                     <a href="https://play.google.com/store/apps/details?id=com.IAA360.ChengHao" target="_blank"
+                        title="Google App for BT-1000 " rel="noopener noreferrer">
+                        <img src="/img/slice2.webp" style="border: none !important;" alt="BT-1000 Google App">
+                     </a>
+                     <a href="https://apps.apple.com/us/app/scentmarketing/id1243308763" target="_blank"
+                        title="Apple IOS BT-1000 App " rel="noopener noreferrer">
+                        <img src="/img/slice3.webp" alt="BT-1000 Apple IOS App " style="border: none !important;">
+                     </a>
+                  </p>
+                  <h3>Diffuser Troubleshooting</h3>
+                  <p>
+                     Please download our manual and head to the troubleshooting section in order to perform basic
+                     troubleshooting. Should you run into more issues that are not outlined in the manual, please reach
+                     out to our support for help.&nbsp;
+                  </p>
+                  <p>
+                     <strong>
+                        <a class="text-decoration-underline"
+                           href="https://cdn.shopify.com/s/files/1/0592/8101/4953/files/BT1000-Manual.pdf"
+                           target="_blank" title="BT-1000 Product Manual" rel="noopener noreferrer">
+                           DOWNLOAD BT-1000 PRODUCT MANUAL
+                        </a>
+                     </strong>
+                  </p>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   {{- partial "footer.html" . -}}
+</body>
+
+</html>

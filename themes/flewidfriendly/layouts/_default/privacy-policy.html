@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Params.lang }}">
+{{- partial "head.html" . -}}
+{{ if or (.Params.math) (.Site.Params.math) }}
+{{- partial "math.html" . -}}
+{{ end }}
+
+<head>
+   {{ partial "header.html" . }}
+
+   <style>
+      .privacy-policy ul {
+         padding-left: 2rem;
+      }
+   </style>
+</head>
+
+<body>
+   <div id="all">
+      {{ partial "breadcrumbs.html" . }}
+      <div id="content" class="privacy-policy">
+         <div class="container">
+            <div class="row">
+               {{ .Content }}
+            </div>
+            <!-- /.row -->
+         </div>
+         <!-- /.container -->
+      </div>
+      <!-- /#content -->
+
+      {{ partial "footer.html" . }}
+
+   </div>
+   <!-- /#all -->
+
+   {{ partial "scripts.html" . }}
+
+</body>
+
+</html>

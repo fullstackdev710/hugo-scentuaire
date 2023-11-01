@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Params.lang }}">
+{{- partial "head.html" . -}}
+{{ if or (.Params.math) (.Site.Params.math) }}
+{{- partial "math.html" . -}}
+{{ end }}
+
+<head>
+   {{ partial "header.html" . }}
+</head>
+
+<body id="backtop">
+   <div class="main">
+      {{ partial "breadcrumbs.html" . }}
+
+      <div class="featured-products py-0">
+         <div class="container py-5">
+            <div class="row">
+               <div class="col-12">
+                  {{ $elements := default 2 .Site.Params.products.cols }}
+                  {{ $products := sort .Site.Data.products "date" "desc"}}
+                  {{ $total_rows := 1 }}
+
+                  {{ if gt (mod (len $products) $elements) 0 }}
+                  {{ $total_rows = add $total_rows 1 }}
+                  {{ end }}
+
+                  {{ range $i, $sequence := seq $total_rows }}
+                  <div class="row row-{{ $i }} row-{{ if eq (mod $i 2) 0 }}odd{{ else }}even{{ end }}">
+                     {{ range $j, $sequence2 := (seq $elements) }}
+
+                     {{ $feature_index := add (mul $i $elements) $j }}
+                     {{ if lt $feature_index (len $products) }}
+                     {{ $element := index $products $feature_index }}
+
+                     <div class="col-12 col-md-6 col-lg-3 featured-product">
+                        {{ with $element.url }}
+                        <a href="{{ $element.url }}" aria-label="{{ $element.title }}">
+                           {{ with $element.url }}
+                           <img src="{{ $element.banner }}" alt="{{ $element.title }}" class="w-100 mb-4">
+                           {{ end }}
+                        </a>
+                        {{ end }}
+
+                        {{ with $element.url }}
+                        <a href="{{ $element.url }}" aria-label="{{ $element.title }}">
+                           {{ with $element.title }}
+                           <p class="text-black mb-2" style="font-family: New York; font-size: 0.82rem;">{{
+                              $element.title |
+                              markdownify }}</p>
+                           <h3 class="text-black mt-0" style="font-family: Cardo, serif; font-size: 1.1rem;">From ${{
+                              $element.price
+                              }} USD</h3>
+                           {{ end }}
+                        </a>
+                        {{ end }}
+                     </div>
+
+                     {{ end }}
+                     {{ end }}
+                  </div>
+                  {{ end }}
+               </div>
+            </div>
+            <!-- /.row -->
+         </div>
+      </div>
+   </div>
+   {{- partial "footer.html" . -}}
+</body>
+
+</html>

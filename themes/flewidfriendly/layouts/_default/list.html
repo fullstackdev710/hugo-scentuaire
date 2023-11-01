@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Params.lang }}">
+{{- partial "head.html" . -}}
+{{ if or (.Params.math) (.Site.Params.math) }}
+{{- partial "math.html" . -}}
+{{ end }}
+
+<head>
+    {{ partial "header.html" . }}
+</head>
+
+<body>
+
+    <div id="all">
+        <h1 class="text-center">FLEWID FRIENDLY NEWS</h1>
+        <h4 class="text-center">WHAT'S NEW IN THE WORLD OF BIODEGRADEABLE STRAWS</h4>
+        <div id="content">
+            <div class="container" style="max-width: 800px;">
+                <div class="row">
+                    <!-- *** LEFT COLUMN *** -->
+
+                    <div class="col-md-12" id="blog-listing-medium">
+                        {{ $paginator := .Paginate (where .Data.Pages "Type" "in" .Site.Params.mainSections) }}
+                        {{ range $paginator.Pages }}
+                        <section class="post">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="image">
+                                        <a href="{{ .Permalink }}">
+                                            {{ if .Params.banner }}
+                                            <img src="{{ .Params.banner | relURL }}" class="img-responsive" alt="">
+                                            {{ else }}
+                                            <img src="{{ " img/placeholder.png" | relURL }}" class="img-responsive"
+                                                alt="">
+                                            {{ end }}
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+                                    <div class="clearfix">
+
+                                        {{ if isset .Params "date" }}
+
+                                        {{ $createdAt := .Date.Format "Mon, Jan 2, 2006" }}
+                                        {{ range $index, $month := slice "January" "February" "March" "April" "May"
+                                        "June" "July" "August" "September" "October" "November" "December" }}
+                                        {{ $createdAt = replace $createdAt $month (i18n $month) }}
+                                        {{ end }}
+
+                                        <p class="date-comments">
+                                            <a href="{{ .Permalink }}"><i class="far fa-calendar"></i> {{ $createdAt
+                                                }}</a>
+                                        </p>
+                                        {{ end }}
+                                    </div>
+                                    {{ if not .Site.Params.recent_posts.hide_summary }}
+                                    <p class="intro">{{ .Summary }}</p>
+                                    <p class="read-more"><a href="{{ .Permalink }}" class="btn btn-template-main">{{
+                                            i18n "continueReading" }}</a>
+                                    </p>
+                                    {{ end }}
+                                </div>
+                            </div>
+                        </section>
+                        {{ end }}
+
+                    </div>
+
+                    {{ partial "pagination" . }}
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container -->
+        </div>
+        <!-- /#content -->
+
+        {{ partial "footer.html" . }}
+
+    </div>
+    <!-- /#all -->
+
+    {{ partial "scripts.html" . }}
+
+</body>
+
+</html>
