@@ -1,4 +1,3 @@
-console.log("fddfd");
 // Custom script
 document
   .querySelector(".navbar-toggler")

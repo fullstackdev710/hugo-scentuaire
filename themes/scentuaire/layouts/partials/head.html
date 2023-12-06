@@ -9,31 +9,21 @@
   <meta name="description" content="{{ .Site.Params.description }}" />
   <meta name="author" content="{{ .Site.Params.author }}" />
 
-  <link href="/libs/bootstrap/5.3.0/css/bootstrap.min.css" media="all" rel="stylesheet" defer async/>
+  <link rel="preload" href="/libs/bootstrap/5.3.0/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+  </noscript>
+
   <!-- <link rel="stylesheet" href="/libs/font-awesome/fontawesome-free-6.4.0-web/css/all.min.css" media="all" /> -->
-
-
-
-  
   {{ $style := resources.Get "sass/custom.scss" | resources.ExecuteAsTemplate
   "sass/custom.scss" . | toCSS | minify }}
-  <link rel="stylesheet" href="{{ $style.RelPermalink }}"  defer async/>
-
-
-
-
-  {{ $css := resources.Get "css/main.css" | resources.PostCSS }} 
-  {{ if hugo.IsProduction }} 
-      {{ $css = $css | minify | fingerprint | resources.PostProcess }} 
+  <link rel="stylesheet" href="{{ $style.RelPermalink }}" defer async />
+  {{ $css := resources.Get "css/main.css" | resources.PostCSS }}
+  {{ if hugo.IsProduction }}
+  {{ $css = $css | minify | fingerprint | resources.PostProcess }}
   {{ end }}
 
-  <link
-  rel="stylesheet"
-  href="{{ $css.RelPermalink }}"
-  {{ if hugo.IsProduction -}} 
-    integrity="{{ $css.Data.Integrity }}"
-  {{- end }}
-/>
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}" {{ if hugo.IsProduction -}} integrity="{{ $css.Data.Integrity }}" {{- end }} />
 
 
   {{- $js := resources.Get "js/indexfetch.js" -}} {{ $params := (dict
@@ -41,8 +31,7 @@
   }} {{ $sourceMap := cond hugo.IsProduction "" "inline" }} {{ $opts := dict
   "sourceMap" $sourceMap "minify" hugo.IsProduction "target" "es2018" "params"
   $params }} {{ $js = $js | js.Build $opts }}
-  <script src="{{ $js.RelPermalink }}" {{ if hugo.IsProduction }}integrity="{{ $js.Data.Integrity }}" {{ end }}
-    defer></script>
+  <script src="{{ $js.RelPermalink }}" {{ if hugo.IsProduction }}integrity="{{ $js.Data.Integrity }}" {{ end }} defer></script>
 
   {{ with .Site.Params.favicon }}
   <link rel="icon" type="image/ico" href="{{ . | absURL }}" />
@@ -53,7 +42,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   {{ template "_internal/google_analytics.html" . }} {{ end }}
-<script type="application/ld+json">
+  <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Corporation",
