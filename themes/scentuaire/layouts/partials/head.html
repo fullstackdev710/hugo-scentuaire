@@ -1,0 +1,66 @@
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  <title>
+    {{.Site.Params.seoTitle}} - {{with .Parent}}{{if not .IsHome}}{{.Title}}
+    -{{end}}{{end}} {{ .Title }}
+  </title>
+  <meta name="description" content="{{ .Site.Params.description }}" />
+  <meta name="author" content="{{ .Site.Params.author }}" />
+
+  <link href="/libs/bootstrap/5.3.0/css/bootstrap.min.css" media="all" rel="stylesheet" defer async/>
+  <!-- <link rel="stylesheet" href="/libs/font-awesome/fontawesome-free-6.4.0-web/css/all.min.css" media="all" /> -->
+
+
+
+  
+  {{ $style := resources.Get "sass/custom.scss" | resources.ExecuteAsTemplate
+  "sass/custom.scss" . | toCSS | minify }}
+  <link rel="stylesheet" href="{{ $style.RelPermalink }}"  defer async/>
+
+
+
+
+  {{ $css := resources.Get "css/main.css" | resources.PostCSS }} 
+  {{ if hugo.IsProduction }} 
+      {{ $css = $css | minify | fingerprint | resources.PostProcess }} 
+  {{ end }}
+
+  <link
+  rel="stylesheet"
+  href="{{ $css.RelPermalink }}"
+  {{ if hugo.IsProduction -}} 
+    integrity="{{ $css.Data.Integrity }}"
+  {{- end }}
+/>
+
+
+  {{- $js := resources.Get "js/indexfetch.js" -}} {{ $params := (dict
+  "search_config" site.Params.search_config "is_production" hugo.IsProduction )
+  }} {{ $sourceMap := cond hugo.IsProduction "" "inline" }} {{ $opts := dict
+  "sourceMap" $sourceMap "minify" hugo.IsProduction "target" "es2018" "params"
+  $params }} {{ $js = $js | js.Build $opts }}
+  <script src="{{ $js.RelPermalink }}" {{ if hugo.IsProduction }}integrity="{{ $js.Data.Integrity }}" {{ end }}
+    defer></script>
+
+  {{ with .Site.Params.favicon }}
+  <link rel="icon" type="image/ico" href="{{ . | absURL }}" />
+  {{ end }} {{ with .OutputFormats.Get "rss" -}} {{ printf `
+  <link rel="%s" type="%s" href="%s" title="%s" />
+  ` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }} {{ end -}} {{ if
+  not .Site.IsServer }}
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  {{ template "_internal/google_analytics.html" . }} {{ end }}
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Corporation",
+    "name": "Scentuaire",
+    "alternateName": "Scentuaire Scents",
+    "url": "https://scentuaire.com",
+    "logo": "https://scentuaire.com/img/scentuaire-scents-santal.png"
+  }
+  </script>
+</head>

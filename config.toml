@@ -1,6 +1,6 @@
-baseURL = ""
+baseURL = "https://scentuaire.com"
 title = "Scentuaire"
-theme = "flewidfriendly"
+theme = "scentuaire"
 disableKinds = ["taxonomy", "term"]
 enableEmoji = true
 math = false          # 
@@ -10,7 +10,7 @@ defaultContentLanguage = "en"
 
 [params.enable]
  # Google Maps widget: If `googleMapsApiKey` is not set, no key will be passed to Google (which likely results in a broken map widget).
-    enableGoogleMaps = true
+    enableGoogleMaps = false
     googleMapsApiKey = "AIzaSyAv7Sza8NSp9_l_g8G2vlo0H4ydEPn_2jY"
 
     latitude = "-12.043333"
@@ -24,14 +24,14 @@ defaultContentLanguage = "en"
     # - you're done. Happy mailing!
     #
     # Enable the contact form by entering your Formspree.io endpoint url
-formspree_action = "https://formspree.io/sample/of/endpoint"
+formspree_action = "https://formspree.io/f/xyyqqrrq"
 contact_form_ajax = true
 
     enableRecaptchaInContactForm = true
     googleRecaptchaKey = "site_key_for_google_recaptcha"
 
 # - form actin key set here / Your form's endpoint is:
-    formspreekey = "xvonddbb"
+    formspreekey = "xyyqqrrq"
 
 # number of words of summarized post content (default 70)
 summaryLength = 70
@@ -42,30 +42,30 @@ paginate = 10
 [params]
 mainSections = ['products']
 lang = "en"
-author = ""
+#author = "Scentuaire"
 description = "Scent Diffusers & Aroma Oils"
 seoTitle = "Scent Diffusers & Aroma Oils"
 favicon = "/img/favico.png"  # path to a .ico to use as favicon
-logo = "/img/logo-original.png"  # url or path to a logo to put in the header
-logo_black = "/img/logo-original.png"  # url or path to a logo to put in the header
-formspree_action = "https://formspree.io/sample/of/endpoint"
+logo = "/img/scentuaire-scents-logo.webp"  # url or path to a logo to put in the header
+logo_black = "/img/scentuaire-scents-logo.webp"  # url or path to a logo to put in the header
+formspree_action = "https://formspree.io/f/xyyqqrrq"
 contact_form_ajax = true
 
 [params.footer]
 title = "About Scentuaire"
 text = "© 2023, Scentuaire"
-url = "https://www.shopify.com/?utm_campaign=poweredby&utm_medium=shopify&utm_source=onlinestore"
+url = "https://scentuaire.com"
 description = "Everyone has a space they like to call their own, why not make it smell fabulous. With our diffusers and scent technology you're sure to have a space you can be proud of."
 
 
 [params.footerContactus]
 title = "Contact"
-address1 = "100-2435 Holly Lane"
-address2 = "Ottawa, Ontario, K1V7P2"
-tel = "Tel: 613 518 7379"
-telNumber = "6135187379"
-url = "mailto:contact@flewidfriendly.com"
-text = "contact@flewidfriendly.com"
+address1 = "405 Mulligan Cir"
+address2 = "Hartford, SD, 57033"
+tel = "Tel: 555-555-5555"
+telNumber = "555-555-5555"
+url = "mailto:hello@scentuaire.com"
+text = "hello@scentuaire.com"
 
 [params.recent_posts]
 enable = true
@@ -182,3 +182,6 @@ search = true
 
 [markup.goldmark.renderer]
 unsafe = true  # allow raw HTML in markdown files
+
+[build]
+writeStats = true

@@ -5,11 +5,14 @@
   --secondary-accent: #efecec !important;
   --secondary-accent-rgb: 239, 236, 236;
   --bs-heading-color: #000000;
-  --bs-body-font-size: 1.1rem;
+  --bs-body-font-size: 1.2rem;
   --font-body-scale: 18.15px;
 }
 body {
    font-size: var(--bs-body-font-size);
+}
+.text-decoration-black {
+  color: #000 !important;
 }
 a {
    color: var(--secondary-accent);
@@ -18,10 +21,12 @@ a {
 @font-face {
   font-family: Cardo;
   src: url(/fonts/Cardo/cardo.woff2);
+  font-display: swap;
 }
 @font-face {
   font-family: 'Times New Roman';
   src: url(/fonts/times/times.ttf);
+  font-display: swap;
 }
 // Sizes
 $max-width: {{ .Param "style.pageWidth" | default "750px;" }};
@@ -104,15 +109,18 @@ h1, .h1, h2, .h2, h3, .h3 {
 }
 .text-accent {
   color: rgba(var(--primary-accent-rgb), 0.75) !important;
+  font-size: 33px;
 }
 .text-secondary {
-  color: rgba(var(--secondary-accent-rgb), 0.75) !important;
+  color: #fff !important;
+  font-size: 23px;
 }
 .text-secondary-accent {
-  color: rgba(var(--secondary-accent-rgb), 0.75) !important;
+  color: #fff !important;
 }
 .text-secondary-accent:hover {
-  color: rgba(var(--secondary-accent-rgb), 1) !important;
+  color: #fff !important;
+  text-decoration: underline !important;
 }
 .navbar-brand {
     @extend %link-dark;
@@ -232,7 +240,7 @@ h1, .h1, h2, .h2, h3, .h3 {
     -ms-transition: all 0.2s ease;
     -o-transition: all 0.2s ease;
     transition: all 0.2s ease;
-    font-size: 20px;
+    font-size: 30px;
     text-decoration: none;
     border: solid 2px #fff;
 }

@@ -1,0 +1,60 @@
+<!-- Left logo -->
+<div class="menuHead bg-primary">
+  <div class="container">
+    <div class="row d-none d-lg-flex">
+      <div class="col-12 text-center">
+        <a class="navbar-brand text-white" href="/" title="{{ .Site.Title }}">
+          {{ with .Site.Params.logo }}
+          <img src="{{ . | absURL }}" class="header-logo" alt="scentuaire logo" width="320px" height="32px">
+          {{ end }}
+        </a>
+      </div>
+    </div>
+    <nav class="navbar navbar-expand-lg p-0">
+      <div class="container-fluid">
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+          aria-label="Toggle navigation">
+          <div class="animated-icon"><span></span><span></span><span></span></div>
+        </button>
+        <div class="collapse navbar-collapse " id="navbarSupportedContent">
+          <ul class="navbar-nav m-auto mb-2 mb-lg-0">
+            {{ with .Site.Menus.main }}
+            {{ $navbar_len := len . }}
+            {{ range $i, $nav_item := . }}
+            <li class="nav-item dropdown">
+              {{ if .HasChildren }}
+              <span class="nav-item nav-link" title="{{ $nav_item.Name }}">
+                {{ $nav_item.Pre }}{{ $nav_item.Name }}{{ $nav_item.Post }}
+              </span>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                {{ range .Children }}
+                <!--  <a class="dropdown-item " href="{{ .URL }}" >{{ .Name }}</a> -->
+                <a class="dropdown-item " href="{{ .URL | relLangURL }}" {{ if strings.HasPrefix .URL "http" }}
+                  target="_blank" {{ end }}>{{ .Name }}</a>
+                {{ end }}
+              </div>
+              {{else}}
+              <a class="nav-item nav-link" href="{{ $nav_item.URL }}" title="{{ $nav_item.Name }}">
+                {{ $nav_item.Pre }}{{ $nav_item.Name }}{{ $nav_item.Post }}
+              </a>
+              {{ end }}
+
+            </li>
+            {{ end }}
+            {{ end }}
+          </ul>
+        </div>
+        <div class="row d-block mx-auto d-lg-none">
+          <div class="col-12 text-center">
+            <a class="navbar-brand text-white" href="/" title="{{ .Site.Title }}">
+              {{ with .Site.Params.logo }}
+              <img src="{{ . | absURL }}" class="header-logo" alt="logo">
+              {{ end }}
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+</div>
